@@ -27,8 +27,8 @@ df_1 = pandas.crosstab([df['ARRONDISSEMENT']], df['ANNEE DECLARATION'])
 df_1['min'] = df_1.idxmin(axis=1)
 df_1['max'] = df_1.idxmax(axis=1)
 # Pour rendre df_1 pratique 
-# on le transforme en dict
-df_quest_1 = dict(df_1) # Un dictionnaire avec comme clés
+# Transformer en dict le df_1
+dict_df_1 = dict(df_1) # Un dictionnaire avec comme clés
                         # min, max, 2020, 2021
                         # et la valeur de chacune de ces clés
                         # est une serie qui a pour clés
@@ -56,8 +56,6 @@ df_quest_1 = dict(df_1) # Un dictionnaire avec comme clés
                         # 20    2020
                         # et dr['min][20] renvoit 2020
 
-# Transformer en dict le df_1
-dict_df_1 = dict(df_1)
 # Creation d'un nnouveau dict qui va nous permettre de
 # créer une nouvelle df
 data_frame = {'arrondissement' : list(range(1,21)), 2020 : [], 2021: [], 'Min' : [], 'Max': []}
@@ -69,3 +67,35 @@ for cle, serie in dict_df_1.items():
             data_frame[key] = serie.tolist()
 # création de la df finale
 df_final_1 = pandas.DataFrame(data = data_frame)
+
+
+#pandas.crosstab([dt['type_declaration']], [df['mois_declaration'], dt['annee_declaration']])
+# column_annees = dt['annee_declaration'].tolist()
+# column_type_declaration = dt['type_declaration'].tolist()
+# # en 2020 aucune anomalie n'a été signalée entre janvier et aout
+# # On suprime donc ces de la df
+# # supprimer egalement les annee_dectaration et année 
+# # pour eviter de fausser les resultat de min et max
+
+# # liste_colums_drop = ['annee_declaration', 'type_declaration'] + list(range(1,9))
+
+# dta = dt.drop(['annee_declaration', 'type_declaration', 1,2,3,4,5,6], axis=1)
+
+# # le mois sur lequel on a le min
+# dta['min_mois'] = dta.idxmin(axis=1)
+# # la valeur de min
+# dta['min'] = dta.min(axis=1)
+
+# # le mois sur lequel on a le ax
+# dta['max_mois'] = dta.idxmax(axis=1)
+# # la valeur de max
+# dta['max'] = dta.max(axis=1)
+
+# dta
+
+# dt['min_mois'] = dta['min_mois']
+# dt['valeur_min'] = dta['min']
+
+# dt['max_mois'] = dta['max_mois']
+# dt['valeur_max'] = dta['max']
+# dt
